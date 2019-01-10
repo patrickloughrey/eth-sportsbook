@@ -1,0 +1,2 @@
+# eth-sportsbook
+A MERN application that mimics Draft Kings or Fan Duel on the blockchain. A user can sign up and place wagers on NFL games. The wager placed by a user will create a smart contract on the Ethereum blockchain that will be upheld and automatically disperse funds to a user's valid Ethereum wallet address in the event that the user wins the wager. The user must have a valid MetaMask wallet address in order to successfully place a wager.
