@@ -1,0 +1,44 @@
+{
+  "name": "eth-sportsbook",
+  "version": "1.0.0",
+  "description": "A MERN app that simulates a sports betting platform on the blockchain",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patrickloughrey/eth-sportsbook.git"
+  },
+  "keywords": [
+    "React.js",
+    "Node.js",
+    "MongoDB",
+    "Mongoose",
+    "Passport.js",
+    "Express.js"
+  ],
+  "author": "Patrick Loughrey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patrickloughrey/eth-sportsbook/issues"
+  },
+  "homepage": "https://github.com/patrickloughrey/eth-sportsbook#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
+    "express": "^4.16.4",
+    "is-empty": "^1.2.0",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.4.3",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^10.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
