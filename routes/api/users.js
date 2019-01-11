@@ -1,3 +1,6 @@
+/* @route POST api/users/register */
+/* @route POST api/users/login */
+
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
@@ -41,7 +44,7 @@ router.post("/register", (req, res) => {
             .catch(err => console.log(err));
         });
       });
-  }
+  });
 
 });
 
@@ -92,3 +95,5 @@ router.post("/login", (req, res) => {
     });
   });
 });
+
+module.exports = router;
