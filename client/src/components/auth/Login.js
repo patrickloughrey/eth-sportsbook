@@ -15,8 +15,8 @@ class Login extends Component {
     };
   }
 
-  /* If logged in and user navigates to Register page, should redirect them to dashboard */
   componentDidMount() {
+    // If logged in and user navigates to Login page, should redirect them to dashboard
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
     }
@@ -24,31 +24,35 @@ class Login extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/dashboard"); // push user to dashboard when they login
+      this.props.history.push("/dashboard");
     }
+
     if (nextProps.errors) {
-        this.setState({
-          errors: nextProps.errors
-        });
+      this.setState({
+        errors: nextProps.errors
+      });
     }
   }
 
-onChange = e => {
+  onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
-onSubmit = e => {
-    e.preventDefault();
-    const userData = {
-        email: this.state.email,
-        password: this.state.password
-    };
-    console.log(userData);
-    this.props.loginUser(userData); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
-};
 
-render() {
+  onSubmit = e => {
+    e.preventDefault();
+
+    const userData = {
+      email: this.state.email,
+      password: this.state.password
+    };
+
+    this.props.loginUser(userData);
+  };
+
+  render() {
     const { errors } = this.state;
-return (
+
+    return (
       <div className="container">
         <div style={{ marginTop: "4rem" }} className="row">
           <div className="col s8 offset-s2">
@@ -120,7 +124,6 @@ return (
     );
   }
 }
-
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,

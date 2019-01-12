@@ -17,8 +17,8 @@ class Register extends Component {
     };
   }
 
-  /* If logged in and user navigates to Register page, should redirect them to dashboard */
   componentDidMount() {
+    // If logged in and user navigates to Register page, should redirect them to dashboard
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
     }
@@ -32,24 +32,27 @@ class Register extends Component {
     }
   }
 
-onChange = e => {
+  onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
-onSubmit = e => {
-    e.preventDefault();
-    const newUser = {
-        name: this.state.name,
-        email: this.state.email,
-        password: this.state.password,
-        password2: this.state.password2
-    };
-    console.log(newUser);
-    this.props.registerUser(newUser, this.props.history);
-};
 
-render() {
+  onSubmit = e => {
+    e.preventDefault();
+
+    const newUser = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      password2: this.state.password2
+    };
+
+    this.props.registerUser(newUser, this.props.history);
+  };
+
+  render() {
     const { errors } = this.state;
-return (
+
+    return (
       <div className="container">
         <div className="row">
           <div className="col s8 offset-s2">
