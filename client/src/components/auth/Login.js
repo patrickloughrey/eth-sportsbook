@@ -15,6 +15,13 @@ class Login extends Component {
     };
   }
 
+  /* If logged in and user navigates to Register page, should redirect them to dashboard */
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push("/dashboard"); // push user to dashboard when they login
