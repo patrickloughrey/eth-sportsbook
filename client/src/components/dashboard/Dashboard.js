@@ -2,12 +2,50 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+/* Odds API Dependencies */
+const axios = require('axios')
+const apiKey = require("../../config/keys.apiKey");
 
 class Dashboard extends Component {
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
   };
+
+  /* Retrieve Odds from Odds API */
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+        let sport_key = 'americanfootball_nfl'
+        axios.get('https://api.the-odds-api.com/v3/odds', {
+            params: {
+              api_key: apiKey,
+              sport: sport_key,
+              region: 'us', // uk | us | au
+              mkt: 'h2h' // h2h | spreads | totals
+            }
+            console.log(apiKey)
+        }).then(response => {
+            // odds_json['data'] contains a list of live and upcoming events and odds for different bookmakers.
+            // Events are ordered by start time (live events are first)
+            console.log(
+                `Successfully got ${response.data.data.length} events`,
+                `Here's the first event:`
+            )
+            console.log(JSON.stringify(response.data.data[0]))
+
+            // Check your usage
+            console.log()
+            console.log('Remaining requests',response.headers['x-requests-remaining'])
+            console.log('Used requests',response.headers['x-requests-used'])
+
+      })
+      .catch(error => {
+          console.log('Error status', error.response.status)
+          console.log(error.response.data)
+      })
+
+    }
+  }
 
   render() {
     const { user } = this.props.auth;
