@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 /* Odds API Dependencies */
 const axios = require('axios')
-const apiKey = require("../../config/keys.apiKey");
+const api_key = '6ef7011b1332c632a16c95401f6c755a'
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -18,12 +18,11 @@ class Dashboard extends Component {
         let sport_key = 'americanfootball_nfl'
         axios.get('https://api.the-odds-api.com/v3/odds', {
             params: {
-              api_key: apiKey,
+              api_key: api_key,
               sport: sport_key,
               region: 'us', // uk | us | au
               mkt: 'h2h' // h2h | spreads | totals
             }
-            console.log(apiKey)
         }).then(response => {
             // odds_json['data'] contains a list of live and upcoming events and odds for different bookmakers.
             // Events are ordered by start time (live events are first)
@@ -31,9 +30,12 @@ class Dashboard extends Component {
                 `Successfully got ${response.data.data.length} events`,
                 `Here's the first event:`
             )
-            console.log(JSON.stringify(response.data.data[0]))
+            /* Print all events */
+            for (var i = 0; i < response.data.data.length; i++) {
+                console.log(JSON.stringify(response.data.data[i]))
+            }
 
-            // Check your usage
+            /* Check your API usage */
             console.log()
             console.log('Remaining requests',response.headers['x-requests-remaining'])
             console.log('Used requests',response.headers['x-requests-used'])
@@ -55,10 +57,10 @@ class Dashboard extends Component {
         <div className="row">
           <div className="landing-copy col s12 center-align">
             <h4>
-              <b>Hey there,</b> {user.name.split(" ")[0]}
+              <b>Welcome to Block Bets,</b> {user.name.split(" ")[0]} 
               <p className="flow-text grey-text text-darken-1">
-                You are logged into a full-stack{" "}
-                <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
+                Begin placing bets{" "}
+                <span style={{ fontFamily: "monospace" }}>TODAY</span>
               </p>
             </h4>
             <button
@@ -66,7 +68,24 @@ class Dashboard extends Component {
                 width: "150px",
                 borderRadius: "3px",
                 letterSpacing: "1.5px",
-                marginTop: "1rem"
+                marginTop: "1rem",
+                marginBottom: "1rem",
+                marginRight: "1rem",
+                marginLeft: "1rem"
+              }}
+              className="btn btn-large waves-effect waves-light hoverable green accent-3"
+            >
+              Place Bet
+            </button>
+            <button
+              style={{
+                width: "150px",
+                borderRadius: "3px",
+                letterSpacing: "1.5px",
+                marginTop: "1rem",
+                marginBottom: "1rem",
+                marginRight: "1rem",
+                marginLeft: "1rem"
               }}
               onClick={this.onLogoutClick}
               className="btn btn-large waves-effect waves-light hoverable blue accent-3"

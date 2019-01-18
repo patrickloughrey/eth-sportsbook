@@ -8,11 +8,13 @@ class Landing extends Component {
         <div className="row">
           <div className="col s12 center-align">
             <h4>
-              <b>Register</b> and begin placing sports bets on the {" "}
-              <span style={{ fontFamily: "monospace" }}>BLOCKCHAIN</span>
+              <b>Build</b> a login/auth app with the{" "}
+              <span style={{ fontFamily: "monospace" }}>MERN</span> stack from
+              scratch
             </h4>
             <p className="flow-text grey-text text-darken-1">
-              All you need is a <b>MetaMask</b> wallet to begin!
+              Create a (minimal) full-stack app with user authentication via
+              passport and JWTs
             </p>
             <br />
             <Link
@@ -45,4 +47,4 @@ class Landing extends Component {
   }
 }
 
-export default Landing;
+export default Bet;
