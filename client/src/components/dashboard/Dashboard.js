@@ -5,6 +5,8 @@ import { logoutUser } from "../../actions/authActions";
 /* Odds API Dependencies */
 const axios = require('axios')
 const api_key = '6ef7011b1332c632a16c95401f6c755a'
+const teams = []
+
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -15,13 +17,13 @@ class Dashboard extends Component {
   /* Retrieve Odds from Odds API */
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-        let sport_key = 'americanfootball_nfl'
+        let sport_key = 'basketball_nba'
         axios.get('https://api.the-odds-api.com/v3/odds', {
             params: {
               api_key: api_key,
               sport: sport_key,
-              region: 'us', // uk | us | au
-              mkt: 'h2h' // h2h | spreads | totals
+              region: 'uk', // uk | us | au
+              mkt: 'spreads' // h2h | spreads | totals
             }
         }).then(response => {
             // odds_json['data'] contains a list of live and upcoming events and odds for different bookmakers.
@@ -33,6 +35,7 @@ class Dashboard extends Component {
             /* Print all events */
             for (var i = 0; i < response.data.data.length; i++) {
                 console.log(JSON.stringify(response.data.data[i]))
+                teams.push(JSON.stringify(response.data.data[i].teams))
             }
 
             /* Check your API usage */
